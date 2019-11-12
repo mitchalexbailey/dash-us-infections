@@ -10,7 +10,7 @@ from us_infectious_toy import infections, show_year_map
 fserver = Flask(__name__)
 app = dash.Dash(__name__, server=fserver)
 server = app.server
-
+app.title = 'US Infectious Disease Visualization'
 # app = dash.Dash(__name__)
 
 
