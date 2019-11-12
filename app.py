@@ -4,7 +4,8 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 from flask import Flask
 
-from us_infectious_toy import infections, show_year_map
+from us_infectious_toy import infections, show_year_map, get_diseases
+from constants import columns_by_table_clean
 
 
 fserver = Flask(__name__)
@@ -33,6 +34,14 @@ app.layout = html.Div(
         html.Div(
             className='col-md-4 col-md-4-pretty_container pretty_container',
             children=[
+            html.H1(children='Disease Tables'),
+            dcc.Dropdown(
+                id='table_select',
+                className="dash-input",
+                multi=True,
+                options=[{'label': x, 'value': x} for x in list(columns_by_table_clean.keys())],
+                value=['Measles', 'Mumps']
+            ),
             html.H1(children='Select Reporting Year'),
             dcc.Dropdown(
                 id='year',
@@ -54,6 +63,9 @@ app.layout = html.Div(
                 options=[{'label': x, 'value': x} for x in ['Absolute', 'Relative to State Population']],
                 value='Relative to State Population'
             ),
+            html.Br(),
+            html.Br(),
+            html.Br(),
             ]),
         html.Div(
             className='col-md-8 col-md-8-pretty_container pretty_container',
@@ -69,9 +81,21 @@ app.layout = html.Div(
     Output('us-infectious-graph', 'figure'),
     [Input('year', 'value'),
      Input('infection', 'value'),
-     Input('count_type', 'value')])
-def update_figure(year, infection, count_type):
-    return show_year_map(year, infection, count_type)
+     Input('count_type', 'value'),
+     Input('table_select', 'value')])
+def update_figure(year, infection, count_type, table_select):
+    fig = show_year_map(year=year,
+        infection=infection,
+        count_type=count_type,
+        tables=table_select)
+    return fig
+
+@app.callback(
+    Output('infection', 'options'),
+    [Input('table_select', 'value')])
+def update_disease_list(tables):
+    cols = get_diseases(tables)
+    return [{'label': x, 'value': x} for x in cols]
 
 
 if __name__ == '__main__':
