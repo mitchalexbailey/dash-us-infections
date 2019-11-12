@@ -89,13 +89,22 @@ def show_year_map(year='2018',
         locationmode = 'USA-states',
         colorscale = 'Reds',
         colorbar_title = f"{infection.title()} Cases ({count_type})",
-        text = temp_dat[infection].apply(lambda x: f'{x} per 100k')
+        text = temp_dat[infection].apply(lambda x: f'{x} per 100k'),
+        showscale=False,
     ))
 
     fig.update_layout(
         title_text = f'{infection} Cases {year}',
         geo_scope='usa',
-        font=font_dict
+        font=font_dict,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        margin = go.layout.Margin(
+            t=150,
+            l=5,
+            r=5,
+            b=5
+        )
     )
 
     return fig
