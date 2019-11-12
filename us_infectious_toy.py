@@ -1,10 +1,10 @@
 import pandas as pd
 import json
-import urllib
+import urllib3
 import glob
 import plotly.graph_objects as go
 
-
+http = urllib3.PoolManager()
 infections = ['Listeriosis',
               'Lyme disease, Total',
               'Lyme disease, Confirmed',
@@ -53,8 +53,10 @@ def clean_dat(x):
 
 def get_dat(year):
     url = f'https://wonder.cdc.gov/nndss/static/{year}/annual/{year}-table2i.txt'
-    lines = [x.decode('iso8859_15').rstrip() for x in urllib.request.urlopen(url)]
     
+    response = http.request('GET', url)
+    lines = [x.rstrip() for x in response.data.decode('iso8859_15').split('\n')]
+
     start_line = lines.index('tab delimited data:')
     dat = pd.DataFrame([x.rstrip().split('\t') for x in lines[start_line+1:]])
     dat.columns = [x.rstrip() for x in lines[start_line-len(dat.columns)-1:start_line-1]]
