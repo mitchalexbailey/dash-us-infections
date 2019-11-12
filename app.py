@@ -74,7 +74,7 @@ app.layout = html.Div(
             className='col-md-8 col-md-8-pretty_container pretty_container',
             children=[dcc.Graph(id='us-infectious-graph'),
                       html.Hr(),
-                      html.H5(children=["You can interact with the map above to explore values. Produced using ",
+                      html.H5(children=["You can zoom, pan and hover over map above to explore values. Produced using ",
                                         html.A(children="Plotly.", href='https://plot.ly/', target='_blank')]),
                       html.P(children=["Infection data from ",
                                         html.A(children="CDC.", href="https://wonder.cdc.gov/nndss/static", target="_blank"),
