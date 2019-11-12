@@ -54,19 +54,14 @@ app.layout = html.Div(
                 options=[{'label': x, 'value': x} for x in ['Absolute', 'Relative to State Population']],
                 value='Relative to State Population'
             ),
-            html.Div(
-                className='simple-box',
-                children=[
-                html.P(
-                    children='''Infection data from CDC (https://wonder.cdc.gov/nndss/static).
-                                Population data from US Census Bureau (https://data.census.gov)'''
-                        )]
-                )]),
+            ]),
         html.Div(
             className='col-md-8 col-md-8-pretty_container pretty_container',
-            children=[dcc.Graph(id='us-infectious-graph')]
+            children=[dcc.Graph(id='us-infectious-graph'),
+                      html.P(children='''Infection data from CDC (https://wonder.cdc.gov/nndss/static).
+                                          Population data from US Census Bureau (https://data.census.gov)''')]
             )
-        ])
+        ]),
     ])
 
 @app.callback(

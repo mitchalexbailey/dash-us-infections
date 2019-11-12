@@ -1,6 +1,6 @@
 h1 {
 	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-	font-size: 24px;
+	font-size: 36px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 700;
@@ -19,13 +19,17 @@ body {
 	background-color: #f9f9f9;
 }
 
+.row {
+	height: 100%;
+}
+
 .title {
 	font-size: 60px;
 }
 
 .dash-input {
 	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-	font-size: 20px;
+	font-size: 36px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 400;
