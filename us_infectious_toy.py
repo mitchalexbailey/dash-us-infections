@@ -83,13 +83,17 @@ def show_year_map(year='2018',
     if count_type != 'Absolute':
         temp_dat[infection] = temp_dat.apply(lambda x: x[infection]/state_populations.get(str(year)).get(x['Reporting Area'])*1e5,
                                              axis=1)
-    fig = go.Figure(data=go.Choropleth(
+        htext = list(temp_dat[infection].apply(lambda x: f'{round(x, 3)} per 100k'))
+    else:
+        htext = list(temp_dat[infection].apply(lambda x: f'{x} cases overall'))
+    fig = go.Figure(
+        data=go.Choropleth(
         locations=temp_dat['code'],
         z = temp_dat[infection].astype(float),
         locationmode = 'USA-states',
         colorscale = 'Reds',
         colorbar_title = f"{infection.title()} Cases ({count_type})",
-        text = temp_dat[infection].apply(lambda x: f'{x} per 100k'),
+        text = htext,
         showscale=False,
     ))
 
