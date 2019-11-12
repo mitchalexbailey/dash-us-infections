@@ -13,8 +13,8 @@ label_cols = ['code', 'Reporting Area', 'Total Resident Population']
 
 font_dict = dict(
             family="Courier New, monospace",
-            size=18,
-            color="#7f7f7f"
+            size=16,
+            color="black"
             )
 
 def get_diseases(tables):
@@ -145,7 +145,7 @@ def show_year_map(year,
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         margin = go.layout.Margin(
-            t=50,
+            t=60,
             l=5,
             r=5,
             b=5
