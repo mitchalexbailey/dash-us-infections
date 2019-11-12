@@ -1,1 +1,1 @@
-web: gunicorn dash-us-infectious:server
+web: gunicorn app:server
