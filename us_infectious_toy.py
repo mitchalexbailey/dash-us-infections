@@ -139,7 +139,7 @@ def show_year_map(year,
     ))
 
     fig.update_layout(
-        title_text = f'{infection} Cases {year}',
+        title_text = f'<b>{infection} Cases {year}</b><br><i>{count_type}</i>',
         geo_scope='usa',
         font=font_dict,
         paper_bgcolor='rgba(0,0,0,0)',
