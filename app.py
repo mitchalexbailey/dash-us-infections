@@ -2,12 +2,16 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+from flask import Flask
 
 from us_infectious_toy import infections, show_year_map
 
 
-external_stylesheets = ['us_infectious.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+fserver = Flask(__name__)
+app = dash.Dash(__name__, server=fserver)
+server = app.server
+
+# app = dash.Dash(__name__)
 
 
 app.layout = html.Div(children=[
