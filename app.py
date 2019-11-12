@@ -35,6 +35,7 @@ app.layout = html.Div(
             className='col-md-4 col-md-4-pretty_container pretty_container',
             children=[
             html.H1(children='Disease Tables'),
+            html.P(children=[html.I(children='Disease tables selected impact the list of infectious diseases available below.')]),
             dcc.Dropdown(
                 id='table_select',
                 className="dash-input",
@@ -42,21 +43,23 @@ app.layout = html.Div(
                 options=[{'label': x, 'value': x} for x in list(columns_by_table_clean.keys())],
                 value=['Measles', 'Mumps']
             ),
-            html.H1(children='Select Reporting Year'),
+            html.H1(children='Reporting Year'),
             dcc.Dropdown(
                 id='year',
                 className="dash-input",
                 options=[{'label': x, 'value': x} for x in ['2016', '2017', '2018']],
                 value='2018'
             ),
-            html.H1(children='Select Infectious Disease'),
+            html.H1(children='Infectious Disease'),
+            html.P(children=[html.I(children='This list includes only infections available in the disease tables selected above.')]),
             dcc.Dropdown(
                 id='infection',
                 className="dash-input",
                 options=[{'label': x, 'value': x} for x in infections],
                 value='Measles, Total'
             ),
-            html.H1(children='Absolute Count or Relative to State Population'),
+            html.H1(children='Count Type'),
+            html.P(children=[html.I(children='Absolute number of cases or incidence (i.e. relative to population of state).')]),
             dcc.Dropdown(
                 id='count_type',
                 className="dash-input",
