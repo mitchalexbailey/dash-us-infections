@@ -10,7 +10,7 @@ from us_infectious_toy import infections, show_year_map
 fserver = Flask(__name__)
 app = dash.Dash(__name__, server=fserver)
 server = app.server
-app.title = 'US Infectious Disease Visualization'
+app.title = 'US Infectious Disease'
 # app = dash.Dash(__name__)
 
 
@@ -58,6 +58,7 @@ app.layout = html.Div(
         html.Div(
             className='col-md-8 col-md-8-pretty_container pretty_container',
             children=[dcc.Graph(id='us-infectious-graph'),
+                      html.Hr(),
                       html.P(children='''Infection data from CDC (https://wonder.cdc.gov/nndss/static).
                                           Population data from US Census Bureau (https://data.census.gov)''')]
             )
