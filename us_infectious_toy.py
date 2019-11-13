@@ -52,6 +52,9 @@ def get_state_populations(simple=True):
 
 
 def clean_dat(x):
+    if x == '\x97':
+        return 0
+
     try:
         x = str(x).replace(',', '')
         num_x = float(x)
