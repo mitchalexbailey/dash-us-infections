@@ -11,7 +11,7 @@ from constants import columns_by_table_clean
 fserver = Flask(__name__)
 app = dash.Dash(__name__, server=fserver)
 server = app.server
-app.title = 'US Infectious Disease'
+app.title = 'US Infectious Diseases'
 # app = dash.Dash(__name__)
 
 
@@ -26,7 +26,7 @@ app.layout = html.Div(
             children=[
             html.H1(
                 className='title',
-                children='US Infectious Disease'),
+                children='US Infectious Diseases'),
             html.Hr()])]),
     html.Div(
         className='row',
@@ -80,7 +80,11 @@ app.layout = html.Div(
                                         html.A(children="CDC.", href="https://wonder.cdc.gov/nndss/static", target="_blank"),
                                         html.Br(),
                                         "Population data from ",
-                                        html.A(children="US Census Bureau.", href="https://data.census.gov", target="_blank")
+                                        html.A(children="US Census Bureau.", href="https://data.census.gov", target="_blank"),
+                                        html.Br(),
+                                        html.Br(),
+                                        "Project on ",
+                                        html.A(children="Github.", href="https://github.com/mitchalexbailey/dash-us-infections", target="_blank"),
                                         ]
                         )
                       ])
