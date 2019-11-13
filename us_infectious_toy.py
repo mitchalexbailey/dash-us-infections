@@ -94,7 +94,8 @@ def get_dat(year,  tables=['Malaria, Measles, Lyme disease, Listeriosis']):
             dat = pd.merge(dat, temp_dat, on='Reporting Area', how='outer')
 
 
-    dat['code'] = dat['Reporting Area'].apply(lambda x: codes.get(x))
+    dat['Reporting Area']= dat['Reporting Area'].apply(lambda x: x.replace('New York (excluding New York City)', 'New York'))
+    dat['code'] = dat['Reporting Area'].apply(lambda x: codes.get(x)) 
     global infections
     infections = [x for x in list(dat.columns) if x not in label_cols]
 
